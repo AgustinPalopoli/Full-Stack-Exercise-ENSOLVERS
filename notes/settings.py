@@ -25,9 +25,11 @@ SECRET_KEY = 'django-insecure-sx$s$h#tge-xvdv0u-r4nvlhr&zk86sslk--t^75_0=#q+vmsb
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ['full-stack-exercise-ensolvers.onrender.com']
 
-
+CSRF_TRUSTED_ORIGINS = [
+    'https://full-stack-exercise-ensolvers.onrender.com',
+]
 # Application definition
 
 INSTALLED_APPS = [
