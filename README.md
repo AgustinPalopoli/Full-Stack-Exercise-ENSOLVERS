@@ -85,9 +85,6 @@ LimeNotes/
 * Registration and login are required to access notes.
 * Each user can only see and manage their own notes.
 * A logout option is available from the UI.
-* Default user:
-  * User: user1
-  * Password: Password1#
 
 ---
 
