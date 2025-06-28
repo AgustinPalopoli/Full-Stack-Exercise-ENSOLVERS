@@ -1,0 +1,13 @@
+{% extends "backend/base.html" %}
+
+{% block body %}
+<div class="container">
+<h1>Edit Note</h1>
+<form method="post" class="styled-form">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-success"><i class="bi bi-save"></i> <strong>Save</strong></button>
+    <p><a class="btn btn-primary" style="width:100%" href="{% url 'home' %}"><i class="bi bi-house"></i> Home</a></p>
+</form>
+</div>
+{% endblock %}

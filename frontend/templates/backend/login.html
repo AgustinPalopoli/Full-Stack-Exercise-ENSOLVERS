@@ -1,0 +1,18 @@
+{% extends "backend/base.html" %}
+{% load static %}
+
+{% block body %}
+
+<form method="post" class="my-login-form">
+    {% csrf_token %}
+    <div class="d-flex align-items-center gap-2">
+        <img src="{% static 'img/trademark.png' %}" alt="Logo" height="40">
+        <h1 class="m-0">Lime Notes</h1>
+    </div>
+    {{ form.as_p }}
+    <p><button type="submit" style="width:100%" class="btn btn-outline-light">Log in</button></p>
+    <p class="text-center"><a href="{% url 'register' %}" class="link-info link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Don’t have an account? Sign up</a></p>
+</form>
+
+
+{% endblock %}

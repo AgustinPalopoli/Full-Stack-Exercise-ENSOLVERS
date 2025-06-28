@@ -1,0 +1,59 @@
+{% extends "backend/base.html" %}
+
+{% block body %}
+<div class="container">
+<h1>Note Title: {{ note.title }}</h1>
+
+
+<form method="post" action="{% url 'remove_categories' note.id %}">
+{% csrf_token %}
+<div class="table-responsive" style="max-height: 50vh; overflow-y: auto;">
+    <table class="table table-dark table-striped table-hover align-middle text-center">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Eliminate</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for category in categories.all %}
+                <tr>
+                    <td>{{ category.name }}</td>
+                    <td>
+                        <input type="checkbox" name="remove_categories" value="{{ category.id }}">
+                    </td>
+                </tr>
+            {% empty %}
+                <tr><td colspan="3">Categories is empty</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+    <button class="btn btn-danger btn-sm" type="submit"><i class="bi bi-trash-fill"></i> Delete</button>
+</form>
+</br>
+<form method="post" action="{% url 'add_categories' note.id %}" class="styled-form">
+    {% csrf_token %}
+    <h3>Add new categories</h3>
+    <div id="new-categories">
+        <input type="text" name="add_categories" placeholder="New category" style="margin-bottom: 10px;">
+    </div>
+    <button type="button" onclick="addCategoryField()" class="btn btn-info btn-sm m-1"><i class="bi bi-plus"></i> <strong>Add another category</strong></button>
+    <button type="submit" class="btn btn-success btn-sm m-1"><i class="bi bi-save"></i> <strong> Save<strong></button>
+    <p><a class="btn btn-primary" style="width:100%" href="{% url 'home' %}"><i class="bi bi-house"></i> Home</a></p>
+</form>
+
+</div>
+<script>
+function addCategoryField() {
+    const container = document.getElementById('new-categories');
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.name = 'add_categories';
+    input.placeholder = 'New category';
+    input.style.marginBottom = '10px';
+    container.appendChild(document.createElement('br'));
+    container.appendChild(input);
+}
+</script>
+{% endblock %}

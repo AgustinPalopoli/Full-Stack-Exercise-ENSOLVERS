@@ -1,0 +1,25 @@
+{% extends "backend/base.html" %}
+
+{% block body %}
+
+<div class="container">
+<h1>{{ type }} Notes</h1>
+
+{% if notes %}
+    <ul>
+    {% for note in notes %}
+        <li>
+            <h3>{{ note.title }}</h3>
+            <p><b><u>Created at:</u></b> {{ note.created_at }}</p>
+            <p>{{ note.content|linebreaks }}</p>
+        </li>
+        <hr>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>You don't have any {{ type }} notes</p>
+{% endif %}
+
+<p><a class="btn btn-primary" style="width:100%" href="{% url 'home' %}"><i class="bi bi-house"></i> Home</a></p>
+</div>
+{% endblock %}

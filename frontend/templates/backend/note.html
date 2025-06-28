@@ -1,0 +1,30 @@
+{% extends "backend/base.html" %}
+
+{% block body %}
+<div class="container">
+<h1 >{{ note.title }}</h1>
+
+{% if note.is_archived %}
+    <span class="badge bg-secondary">Archived</span>
+{% else %}
+    <span class="badge bg-success">Active</span>
+{% endif %}
+<p>Created at: {{ note.created_at }}</p>
+<p>Last modified: {{ note.updated_at }}</p>
+<p>Categories:
+{% if note.categories.all %}
+    {% for category in note.categories.all %}
+        <span class="badge bg-info">{{ category.name }}</span>
+    {% endfor %}
+{% else %}
+    <span class="badge bg-warning">No categories</span>
+{% endif %}
+
+<p><b>Content:</b></p>
+<div class="note-content" style="background-color: #f1f1f1;color: #000; border-radius: 5px;">
+    {{ note.content|linebreaks }}
+</div>  
+
+<p><a class="btn btn-primary" style="width:100%" href="{% url 'home' %}"><i class="bi bi-house"></i> Home</a></p>
+</div>
+{% endblock %}
